@@ -24,7 +24,11 @@
 
   &__image{
     padding: 8px;
-    max-width: 200px;
+
+    img{
+      width: 400px;
+      height: 400px;
+    }
   }
 
   &__no-data{
@@ -36,7 +40,7 @@
     width:100%;
 font-size: 20px;
   color: black;
-
+padding-top: 100px;
 
   &__title{
     font-weight: 700;
