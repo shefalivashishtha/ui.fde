@@ -1,0 +1,65 @@
+.container{
+  width: 100%;
+  align-content: center;
+  &__header{
+    margin-left:30px;
+    font-size: 13px;
+    &__live{
+    color: red;
+    }
+    &__time{
+      margin-left:4px;
+      color: black;
+    }
+  }
+
+  &__spinner{
+    margin-left:40px;
+  }
+
+  &__body{
+    width: 100%;
+    padding: 8px 30px;
+&__content{
+
+  &__image{
+    padding: 8px;
+    max-width: 200px;
+  }
+
+  &__no-data{
+    font-weight: 600;
+    color: red;
+  }
+
+  &__text-content{
+    width:100%;
+font-size: 20px;
+  color: black;
+
+
+  &__title{
+    font-weight: 700;
+  }
+  &__text-description,
+  &__text-created-time{
+    padding: 8px 8px;
+  }
+
+  &__text-description{
+    font-weight: 400;
+  }
+
+    &__text-created-time {
+      margin-left: 5px;
+    }
+
+    &__text-count{
+      font-weight: 400;
+    }
+
+  }
+
+}
+  }
+}

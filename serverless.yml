@@ -1,0 +1,49 @@
+Resources:
+  MyStaticBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: ui-fde-bucket
+
+  MyStaticDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - fde.com
+        Origins:
+          - DomainName: !GetAtt UIFdeStaticBucket.fde
+            Id: ui-fde-origin
+        DefaultCacheBehavior:
+          TargetOriginId: ui-fde-origin
+          ForwardedValues:
+            QueryString: false
+            Cookies: false
+            Headers: false
+          ViewerProtocolPolicy: redirect-to-https
+          Compress: true
+          MinTTL: 0
+
+  MyAngularDeployment:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: ui-fde-bucket
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+
+  MyAngularDeploymentPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref UiFDEDeployment
+      PolicyDocument:
+        Version: "2025-01-12"
+        Statement:
+          - Effect: Allow
+            Principal: "*"
+            Action: s3:GetObject
+            Resource: !Join ["", ["arn:aws:s3:::", !Ref UiFDEDeployment, "/*"]]
+
+  MyAngularDeploymentAccessLogs:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: ui-fde-bucket-logs
