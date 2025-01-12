@@ -1,0 +1,77 @@
+openapi: 3.0.1
+info:
+  title: FDE API
+  description: This is an API.
+  version: 1.0.0
+servers:
+- url: https://hm15blhzgb.execute-api.eu-west-1.amazonaws.com/Development
+paths:
+  /getLatest:
+    post:
+      responses:
+        "200":
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfResponse'
+    options:
+      responses:
+        "200":
+          description: 200 response
+          headers:
+            Access-Control-Allow-Origin:
+              schema:
+                type: string
+            Access-Control-Allow-Methods:
+              schema:
+                type: string
+            Access-Control-Allow-Headers:
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empty'
+  /upload:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Request'
+        required: true
+      responses:
+        "201":
+          description: 201 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Request'
+      x-codegen-request-body-name: Request
+components:
+  schemas:
+    Response:
+      type: object
+      properties:
+        ImageUrl:
+          type: string
+        Description:
+          type: string
+        CreatedDateTime:
+          type: string
+        TotalInLastHr:
+          type: number
+    Empty:
+      title: Empty Schema
+      type: object
+    Request:
+      type: object
+      properties:
+        ImageUrl:
+          type: string
+        Description:
+          type: string
+    ArrayOfResponse:
+      type: object
+x-original-swagger-version: "2.0"
